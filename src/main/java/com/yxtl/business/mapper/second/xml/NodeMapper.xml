@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yxtl.business.mapper.second.NodeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yxtl.business.entity.second.Node">
+        <id column="id" property="id" />
+        <result column="node_num" property="nodeNum" />
+        <result column="chip_id" property="chipId" />
+        <result column="series" property="series" />
+        <result column="helmet_color" property="helmetColor" />
+        <result column="create_time" property="createTime" />
+        <result column="company_id" property="companyId" />
+        <result column="user_id" property="userId" />
+        <result column="gateway_id" property="gatewayId" />
+        <result column="lng" property="lng" />
+        <result column="lat" property="lat" />
+        <result column="is_link" property="isLink" />
+        <result column="bat" property="bat" />
+        <result column="intercom_status" property="intercomStatus" />
+        <result column="is_sos" property="isSos" />
+        <result column="is_expired" property="isExpired" />
+    </resultMap>
+
+</mapper>

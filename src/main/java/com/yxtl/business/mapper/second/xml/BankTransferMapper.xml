@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yxtl.business.mapper.second.BankTransferMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yxtl.business.entity.second.BankTransfer">
+        <id column="id" property="id" />
+        <result column="order_sn" property="orderSn" />
+        <result column="tel" property="tel" />
+        <result column="name" property="name" />
+        <result column="account_id" property="accountId" />
+        <result column="account" property="account" />
+        <result column="bank_name" property="bankName" />
+        <result column="amount" property="amount" />
+        <result column="create_time" property="createTime" />
+        <result column="real_amount" property="realAmount" />
+        <result column="review_status" property="reviewStatus" />
+        <result column="review_time" property="reviewTime" />
+        <result column="img" property="img" />
+        <result column="operator_name" property="operatorName" />
+    </resultMap>
+
+    <select id="showByPage" resultType="com.yxtl.business.entity.second.BankTransfer">
+        SELECT * FROM bank_transfer WHERE review_status = 0 AND type = 0 ORDER BY id DESC
+    </select>
+
+    <select id="showAdminRecordByPage" resultType="com.yxtl.business.entity.second.BankTransfer">
+        SELECT * FROM bank_transfer WHERE type = 0 AND review_status = 2 ORDER BY id DESC
+    </select>
+
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yxtl.business.mapper.second.ProductSpuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yxtl.business.entity.second.ProductSpu">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="series" property="series" />
+        <result column="sketch" property="sketch" />
+        <result column="img" property="img" />
+        <result column="min_price" property="minPrice" />
+        <result column="sales" property="sales" />
+        <result column="is_sale" property="isSale" />
+        <result column="is_show" property="isShow" />
+    </resultMap>
+
+    <select id="showSpu" resultType="com.yxtl.business.entity.second.ProductSpu">
+        SELECT * FROM product_spu ORDER BY id DESC
+    </select>
+
+</mapper>
