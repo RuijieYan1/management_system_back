@@ -49,4 +49,13 @@
         ORDER BY p.id DESC
     </select>
 
+    <select id="showSuit" resultType="com.yxtl.business.entity.second.Product">
+        SELECT id,
+               name,
+               price,
+               sales,
+               is_sale
+        FROM product WHERE is_set = 0
+    </select>
+
 </mapper>

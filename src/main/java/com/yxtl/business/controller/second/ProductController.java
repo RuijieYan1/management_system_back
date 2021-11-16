@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.api.R;
 import com.yxtl.business.dto.second.KindDTO;
 import com.yxtl.business.dto.second.ProductDTO;
 import com.yxtl.business.dto.second.ProductSpuDTO;
+import com.yxtl.business.dto.second.SuitDTO;
 import com.yxtl.business.service.second.ProductService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -189,6 +190,36 @@ public class ProductController {
     @DeleteMapping("/deleteGood/{id}")
     public R deleteGood(@PathVariable Integer id) {
         return productService.deleteGood(id);
+    }
+
+    @ApiOperation(value = "商品列表", notes = "商品列表")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "执行成功"),
+            @ApiResponse(code = -1, message = "出错了")
+    })
+    @GetMapping("/showProduct")
+    public R showProduct(Integer currentPage) {
+        return productService.showProduct(currentPage);
+    }
+
+    @ApiOperation(value = "套装列表", notes = "套装列表")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "执行成功"),
+            @ApiResponse(code = -1, message = "出错了")
+    })
+    @GetMapping("/showSuit")
+    public R showSuit() {
+        return productService.showSuit();
+    }
+
+    @ApiOperation(value = "添加套装商品", notes = "添加套装商品")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "执行成功"),
+            @ApiResponse(code = -1, message = "出错了")
+    })
+    @PostMapping("/addSuit")
+    public R addSuit(@RequestBody SuitDTO suitDTO) {
+        return productService.addSuit(suitDTO);
     }
 
 }

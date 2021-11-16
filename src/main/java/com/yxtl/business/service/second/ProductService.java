@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.api.R;
 import com.yxtl.business.dto.second.KindDTO;
 import com.yxtl.business.dto.second.ProductDTO;
 import com.yxtl.business.dto.second.ProductSpuDTO;
+import com.yxtl.business.dto.second.SuitDTO;
 import com.yxtl.business.entity.second.Product;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -48,5 +49,11 @@ public interface ProductService extends IService<Product> {
     R editGood(ProductDTO productDTO);
 
     R deleteGood(Integer id);
+
+    R showProduct(Integer currentPage);
+
+    R showSuit();
+
+    R addSuit(SuitDTO suitDTO);
 
 }

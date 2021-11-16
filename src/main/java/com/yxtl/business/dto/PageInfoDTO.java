@@ -7,6 +7,7 @@ import com.yxtl.business.entity.first.Bind;
 import com.yxtl.business.entity.first.Message;
 import com.yxtl.business.entity.first.User;
 import com.yxtl.business.entity.second.BankTransfer;
+import com.yxtl.business.entity.second.Product;
 import com.yxtl.business.entity.second.ProductKind;
 import com.yxtl.business.entity.second.ProductSpu;
 import io.swagger.annotations.ApiModel;
@@ -103,5 +104,17 @@ public class PageInfoDTO {
 
     @ApiModelProperty(value = "商品详情数量")
     private Long productTotal;
+
+    @ApiModelProperty(value = "商品结果集")
+    private List<Product> singleList;
+
+    @ApiModelProperty(value = "商品数量")
+    private Long singleTotal;
+
+    @ApiModelProperty(value = "套装结果集")
+    private List<Product> suitList;
+
+    @ApiModelProperty(value = "套装数量")
+    private Long suitTotal;
 
 }

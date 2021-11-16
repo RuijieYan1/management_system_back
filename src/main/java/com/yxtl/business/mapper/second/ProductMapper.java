@@ -19,4 +19,6 @@ public interface ProductMapper extends BaseMapper<Product> {
 
     List<ProductDTO> showGood(IPage<ProductDTO> page);
 
+    List<Product> showSuit(IPage<Product> page);
+
 }

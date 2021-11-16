@@ -12,8 +12,10 @@ import com.yxtl.business.dto.PageInfoDTO;
 import com.yxtl.business.dto.second.KindDTO;
 import com.yxtl.business.dto.second.ProductDTO;
 import com.yxtl.business.dto.second.ProductSpuDTO;
+import com.yxtl.business.dto.second.SuitDTO;
 import com.yxtl.business.entity.second.Product;
 import com.yxtl.business.entity.second.ProductKind;
+import com.yxtl.business.entity.second.ProductSet;
 import com.yxtl.business.entity.second.ProductSpu;
 import com.yxtl.business.mapper.second.ProductKindMapper;
 import com.yxtl.business.mapper.second.ProductMapper;
@@ -238,6 +240,36 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     @DS("second")
     public R deleteGood(Integer id) {
         productMapper.deleteById(id);
+        return R.restResult(null, ResApiSuccessCode.SUCCESS);
+    }
+
+    @Override
+    @DS("second")
+    public R showProduct(Integer currentPage) {
+        IPage<Product> page = new Page<>(currentPage, 10);
+        List<Product> list = productMapper.showSuit(page);
+        System.out.println("商品总数: " + page.getTotal());
+        PageInfoDTO pageInfoDTO = new PageInfoDTO();
+        pageInfoDTO.setSingleList(list);
+        pageInfoDTO.setSingleTotal(page.getTotal());
+        return R.restResult(pageInfoDTO, ResApiSuccessCode.SUCCESS);
+    }
+
+    @Override
+    @DS("second")
+    public R showSuit() {
+        List<Product> list = productMapper.selectList(new QueryWrapper<Product>().lambda().eq(Product::getIsSet, Constant.IS_SUIT));
+        return R.restResult(list, ResApiSuccessCode.SUCCESS);
+    }
+
+    @Override
+    @DS("second")
+    public R addSuit(SuitDTO suitDTO) {
+        ProductSet productSet = new ProductSet();
+        productSet.setProductId(suitDTO.getProductId());
+        productSet.setSetId(suitDTO.getSuitId());
+        productSet.setAmount(suitDTO.getAmount());
+        productSetMapper.insert(productSet);
         return R.restResult(null, ResApiSuccessCode.SUCCESS);
     }
 
