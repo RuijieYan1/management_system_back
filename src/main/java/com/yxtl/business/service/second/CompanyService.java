@@ -19,4 +19,7 @@ public interface CompanyService extends IService<Company> {
 
     R addCompany(CompanyDTO companyDTO);
 
+    //查询某公司中所有帽子的信息
+    R showNodeByCompany(String companyName);
+
 }

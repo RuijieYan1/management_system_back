@@ -100,7 +100,7 @@ public class ExpressServiceImpl extends ServiceImpl<ProductTransactionMapper, Pr
         String expNum = expressDTO.getLogistics();
         String tel = expressDTO.getTel();
         //订单状态为待发货（状态码为1）才能执行以下操作，否则发货失败
-        if (transaction.getOrderStatus() == Constant.WAITTING) {
+        if (transaction.getOrderStatus().equals(Constant.WAITTING) ) {
             //更新物流编号
             if (expNum.substring(0,2).equals("SF")) {
                 expNum = expNum + ":" + tel.substring(tel.length()-4);

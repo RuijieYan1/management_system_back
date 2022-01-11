@@ -61,7 +61,7 @@ public class RechargeController {
             File tempFile = fileUtil.transferToImage(multipartFile);
             System.out.println("tempFile.getAbsolutePath()" + tempFile.getAbsolutePath());
             rechargeDTO.setImg(tempFile.getAbsolutePath());
-            String name = identityUtil.getUser(rechargeDTO.getUserName(), rechargeDTO.getIdentify());
+            String name = identityUtil.getOperator(rechargeDTO.getUserName(), rechargeDTO.getIdentify());
             rechargeDTO.setName(name);
             return rechargeService.offlineRecharge(rechargeDTO);
         } else {
@@ -83,7 +83,7 @@ public class RechargeController {
             File tempFile = fileUtil.transferToImage(multipartFile);
             System.out.println("tempFile.getAbsolutePath()" + tempFile.getAbsolutePath());
             rechargeDTO.setImg(tempFile.getAbsolutePath());
-            String name = identityUtil.getUser(rechargeDTO.getUserName(), rechargeDTO.getIdentify());
+            String name = identityUtil.getOperator(rechargeDTO.getUserName(), rechargeDTO.getIdentify());
             rechargeDTO.setName(name);
             return rechargeService.onlineRecharge(rechargeDTO);
         } else {
@@ -98,7 +98,7 @@ public class RechargeController {
     })
     @PostMapping("/record")
     public R rechargeRecord(@RequestParam Integer currentPage, LoginIdentityDTO loginIdentityDTO) {
-        String name = identityUtil.getUser(loginIdentityDTO.getUserName(), loginIdentityDTO.getIdentify());
+        String name = identityUtil.getOperator(loginIdentityDTO.getUserName(), loginIdentityDTO.getIdentify());
         loginIdentityDTO.setName(name);
         return rechargeService.rechargeRecord(currentPage, loginIdentityDTO);
     }

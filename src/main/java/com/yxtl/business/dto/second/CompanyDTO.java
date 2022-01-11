@@ -40,4 +40,17 @@ public class CompanyDTO {
     @ApiModelProperty(value = "账户余额")
     private String balance;
 
+    //2022.01.10
+    @ApiModelProperty(value="帽子总数")
+    private Integer nodeNum;
+
+    @ApiModelProperty(value="已激活帽子个数")
+    private Integer nodeNumA;
+
+    @ApiModelProperty(value="最后更新时间")
+    private String lastTime;
+
+
+
+
 }

@@ -8,7 +8,7 @@ package com.yxtl.business.constant;
 public class Constant {
 
     //文件上传路径
-    public static final String BINDEXCELPATH = "D:\\Project\\WebStormProjects\\admin-version-front\\public\\file\\excel\\bind\\";
+    public static final String BINDEXCELPATH = "E:\\实习项目\\management_system_front\\public\\file\\excel\\bind\\";
     public static final String UNBINDEXCELPATH = "D:\\Project\\WebStormProjects\\admin-version-front\\public\\file\\excel\\unbind\\";
     public static final String IMAGEPATH = "D:\\Project\\WebStormProjects\\admin-version-front\\public\\file\\images\\";
 

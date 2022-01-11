@@ -118,6 +118,8 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <!--加的固定版本的依赖 yan-->
+            <version>1.18.20</version>
             <optional>true</optional>
         </dependency>
         <dependency>
@@ -177,6 +179,12 @@
         <!-- 注：maven默认是不编译，因此加上如下resources才会生产对应的xml文件 目的：解决mybatis映射关系不对应问题  start =============== -->
         <resources>
             <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.yml</include>
+                </includes>
+            </resource>
+            <resource>
                 <directory>src/main/java</directory>
                 <includes>
                     <include>**/*.properties</include>
@@ -200,7 +208,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-<!--                <version>2.3.7.RELEASE</version>-->
+                <version>2.3.7.RELEASE</version>
                 <configuration>
                     <mainClass>com.yxtl.business.Application</mainClass>
                 </configuration>

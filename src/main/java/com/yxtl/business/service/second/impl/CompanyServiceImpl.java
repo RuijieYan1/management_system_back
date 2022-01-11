@@ -11,6 +11,7 @@ import com.yxtl.business.constant.ResApiSuccessCode;
 import com.yxtl.business.dto.PageInfoDTO;
 import com.yxtl.business.dto.PublishDTO;
 import com.yxtl.business.dto.second.CompanyDTO;
+import com.yxtl.business.dto.second.NodeDTO;
 import com.yxtl.business.entity.second.Company;
 import com.yxtl.business.entity.second.ProductAccount;
 import com.yxtl.business.mapper.second.CompanyMapper;
@@ -57,38 +58,47 @@ public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, Company> impl
     @Override
     @DS("second")
     public R addCompany(CompanyDTO companyDTO) {
-        Integer count = companyMapper.selectCount(new QueryWrapper<Company>().lambda().eq(Company::getName, companyDTO.getName()));
-        if (0 == count) {
-            Company company = new Company();
-            company.setName(companyDTO.getName());
-            company.setTel(companyDTO.getTel());
-            String password = this.getPassword();
-            company.setPassword(DigestUtils.md5Hex(password.getBytes()));
-            companyMapper.insert(company);
-            ProductAccount productAccount = new ProductAccount();
-            productAccount.setCompanyId(company.getId());
-            productAccount.setPassword(DigestUtils.md5Hex(Constant.DEFAULT_ACCOUNTPWD.getBytes()));
-            productAccountMapper.insert(productAccount);
-            //mqtt发消息提醒公众号
-            PublishDTO publishDTO = new PublishDTO();
-            publishDTO.setData_type("creat_company");
-            Map map = new HashMap();
-            map.put("tel", company.getTel());
-            map.put("name", company.getName());
-            map.put("login_password", password);
-            map.put("pay_password", Constant.DEFAULT_ACCOUNTPWD);
-            List<Map> mqttData = new ArrayList<>();
-            mqttData.add(map);
-            publishDTO.setData(mqttData);
-            System.out.println("发送的mqtt数据是: " + publishDTO);
-            if (Client.publishCommunication(publishDTO)) {
-                System.out.println("发送创建公司的提示信息成功");
-            }
-            return R.restResult(null, ResApiSuccessCode.SUCCESS);
-        } else {
-            System.out.println("该公司名已存在，不可重复");
+        Integer count = companyMapper.selectCount(new QueryWrapper<Company>().lambda().
+                eq(Company::getName, companyDTO.getName()).or().eq(Company::getTel, companyDTO.getTel()));
+        if (0 != count) {
+            System.out.println("公司名或电话重复");
             return R.restResult(null, ResApiFailCode.ERROR_COMPANY);
         }
+        Company company = new Company();
+        company.setName(companyDTO.getName());
+        company.setTel(companyDTO.getTel());
+        String sixNum = companyDTO.getTel().substring(companyDTO.getTel().length() - 6);
+        String password = DigestUtils.md5Hex(sixNum.getBytes());
+        company.setPassword(password);
+        companyMapper.insert(company);
+        ProductAccount productAccount = new ProductAccount();
+        productAccount.setCompanyId(company.getId());
+        productAccount.setPassword(password);
+        productAccountMapper.insert(productAccount);
+        //mqtt发消息提醒公众号
+        PublishDTO publishDTO = new PublishDTO();
+        publishDTO.setData_type("creat_company");
+        Map map = new HashMap();
+        map.put("tel", company.getTel());
+        map.put("name", company.getName());
+        map.put("login_password", sixNum);
+        map.put("pay_password", sixNum);
+        List<Map> mqttData = new ArrayList<>();
+        mqttData.add(map);
+        publishDTO.setData(mqttData);
+        System.out.println("发送的mqtt数据是: " + publishDTO);
+        if (Client.publishCommunication(publishDTO)) {
+            System.out.println("发送创建公司的提示信息成功");
+        }
+        return R.restResult(null, ResApiSuccessCode.SUCCESS);
+    }
+
+
+    @Override
+    @DS("second")
+    public R showNodeByCompany(String companyName) {
+        List<NodeDTO> list = companyMapper.searchNodeByCompany(companyName);
+        return R.restResult(list, ResApiSuccessCode.SUCCESS);
     }
 
     private String getPassword() {
@@ -102,5 +112,6 @@ public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, Company> impl
         }
         return sb.toString();
     }
+
 
 }

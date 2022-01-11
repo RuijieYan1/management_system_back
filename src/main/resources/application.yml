@@ -14,14 +14,14 @@ Spring:
       datasource:
         first:
           username: root
-          password: Yxtl1234..
-          url: jdbc:mysql://39.101.193.57:3306/yxtl_db_admin?useUnicode=yes&characterEncoding=UTF-8&useSSL=true&serverTimezone=GMT%2B8
+          password: Yxtl3306--
+          url: jdbc:mysql://39.101.193.57:3306/yxtl_db_admin?useUnicode=yes&characterEncoding=UTF-8&useSSL=true&serverTimezone=GMT%2B8&rewriteBatchedStatements=true&useAffectedRows=true
           driver-class-name: com.mysql.cj.jdbc.Driver
           type: com.alibaba.druid.pool.DruidDataSource
         second:
           username: root
-          password: Yxtl1234..
-          url: jdbc:mysql://39.101.193.57:3306/yxtl_db_lora?useUnicode=yes&characterEncoding=UTF-8&useSSL=true&serverTimezone=GMT%2B8
+          password: Yxtl3306--
+          url: jdbc:mysql://39.101.193.57:3306/db_lora?useUnicode=yes&characterEncoding=UTF-8&useSSL=true&serverTimezone=GMT%2B8&rewriteBatchedStatements=true&useAffectedRows=true
           driver-class-name: com.mysql.cj.jdbc.Driver
           type: com.alibaba.druid.pool.DruidDataSource
 
@@ -56,7 +56,7 @@ Spring:
     timeout: 6000
     host: 39.101.193.57
     port: 6379
-    password: yxtl1234..--
+    password: Yxtl6379--
 
 #整合mybatis-plus
 mybatis-plus:

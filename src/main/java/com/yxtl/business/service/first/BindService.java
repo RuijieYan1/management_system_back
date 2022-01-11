@@ -5,6 +5,8 @@ import com.yxtl.business.dto.LoginIdentityDTO;
 import com.yxtl.business.entity.first.Bind;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -24,5 +26,7 @@ public interface BindService extends IService<Bind> {
     R unBindRecords(Integer currentPage, LoginIdentityDTO loginIdentityDTO);
 
     R bindRecordDetail(Integer id);
+
+    List<String> storageDevice(String companyName, List<String> nodeNumList);
 
 }

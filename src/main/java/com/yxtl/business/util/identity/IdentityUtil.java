@@ -25,7 +25,7 @@ public class IdentityUtil {
     AdminMapper adminMapper;
 
     @DS("first")
-    public String getUser(String username, String identify) {
+    public String getOperator(String username, String identify) {
         if (identify.equals(Constant.ADMIN)) {
             Admin admin = adminMapper.selectOne(new QueryWrapper<Admin>().lambda().eq(Admin::getAdminName, username));
             String name = admin.getName();

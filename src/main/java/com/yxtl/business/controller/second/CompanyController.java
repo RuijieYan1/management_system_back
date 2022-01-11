@@ -2,6 +2,7 @@ package com.yxtl.business.controller.second;
 
 import com.baomidou.mybatisplus.extension.api.R;
 import com.yxtl.business.dto.second.CompanyDTO;
+import com.yxtl.business.dto.second.NodeDTO;
 import com.yxtl.business.service.second.CompanyService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -10,6 +11,8 @@ import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author px
@@ -42,6 +45,11 @@ public class CompanyController {
     @PostMapping("/addCompany")
     public R addCompany(@RequestBody CompanyDTO companyDTO) {
         return companyService.addCompany(companyDTO);
+    }
+
+    @GetMapping("/showNodeByCompany")
+    public R showNodeByCompany(@RequestParam String companyName) {
+        return companyService.showNodeByCompany(companyName);
     }
 
 }

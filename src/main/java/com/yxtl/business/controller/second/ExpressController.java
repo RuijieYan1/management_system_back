@@ -50,7 +50,7 @@ public class ExpressController {
     })
     @PostMapping("/deliver")
     public R deliverGoods(ExpressDTO expressDTO) {
-        String name = identityUtil.getUser(expressDTO.getUserName(), expressDTO.getIdentity());
+        String name = identityUtil.getOperator(expressDTO.getUserName(), expressDTO.getIdentity());
         expressDTO.setOperator(name);
         return expressService.deliverGoods(expressDTO);
     }

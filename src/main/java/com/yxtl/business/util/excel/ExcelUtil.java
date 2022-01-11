@@ -1,22 +1,20 @@
 package com.yxtl.business.util.excel;
 
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author px
@@ -25,70 +23,68 @@ import java.util.List;
 @Service
 public class ExcelUtil {
 
-    public List getExcelAll(File file) {
-        List list = new ArrayList<>();
+    public Map<String, List<String>> getExcelAll(File file) {
+        Map<String, List<String>> company = new HashMap<>();
+        List<String> companyNameList = new ArrayList<>();
         try {
-            Workbook wb = null;
+            Workbook wb;
             String fileName = file.getName();
             if (fileName.toUpperCase().endsWith("XLS")) {
                 wb = new HSSFWorkbook(new FileInputStream(file));
-            }
-            if (fileName.toUpperCase().endsWith("XLSX")) {
+            } else if (fileName.toUpperCase().endsWith("XLSX")) {
                 wb = new XSSFWorkbook(new FileInputStream(file));
+            } else {
+                return null;
             }
-            // 把一张xls的数据表读到wb里
-            // 读取第一页,一般一个excel文件会有三个工作表，这里获取第一个工作表来进行操作 HSSFSheet sheet =
-            // wb.getSheetAt(0);
-            Sheet sheet = wb.getSheetAt(0);
-
-            DecimalFormat df = new DecimalFormat("0");
-            // 循环遍历表sheet.getLastRowNum()是获取一个表最后一条记录的记录号，
-            int maxNum = sheet.getLastRowNum();
-            //每一列数据长度应该写死，否则后面遍历取最后列的值会报数组越界异常
-            Row row1=sheet.getRow(0);
-            int maxRow1 =row1.getLastCellNum();
-
-            // 如果总共有3条记录，那获取到的最后记录号就为2，因为是从0开始的
-            for (int j = 0; j < maxNum + 1; j++) {
-                // 创建一个行对象
-                Row row = sheet.getRow(j);
-                // 把一行里的每一个字段遍历出来
-                if (row == null) {
+            // 把一张xls的数据表读到Workbook里
+            int sheets = wb.getNumberOfSheets();
+            Sheet sheet;
+            for (int i = 0; i < sheets; i++) {
+                sheet = wb.getSheetAt(i);
+                if (null == sheet) {
                     continue;
-                } else {
-                    int maxRow = row.getLastCellNum();
-                    //跳过纯空数据
-                    if (maxRow < 1) {
-                        continue;
-                    }
-                    String[] str2 = new String[maxRow1];
-                    for (int i = 0; i < maxRow; i++) {
-                        // 创建一个行里的一个字段的对象，也就是获取到的一个单元格中的值
-                        Cell cell = row.getCell(i);
-                        // if (cell != null) {
-                        // System.out.println("类型:" + cell.getCellType());
-                        // }
-
-                        // 在这里我们就可以做很多自己想做的操作了，比如往数据库中添加数据等
-                        // System.out.println("第" + (j + 1) + "行的第" + i + "列的值："
-                        // + cell);
-                        if (cell != null) {
-                            if (cell.getCellType() == XSSFCell.CELL_TYPE_NUMERIC) { //类型为数值
-                                str2[i] = df.format(cell.getNumericCellValue()); //防止数字变为科学计数
-                            } else {
-                                str2[i] = cell + "";
+                }
+                // 循环遍历表sheet.getLastRowNum()是获取一个表最后一条记录的记录号，
+                int maxRow = sheet.getLastRowNum();
+                // 如果总共有3条记录，那获取到的最后记录号就为2，因为是从0开始的
+                for (int j = 0; j <= maxRow; j++) {
+                    // 创建一个行对象
+                    Row row = sheet.getRow(j);
+                    // 把一行里的每一个字段遍历出来
+                    if (row != null) {
+                        //表头总共的列数
+                        int maxCell = row.getLastCellNum();
+                        //跳过纯空数据
+                        if (maxCell < 1) {
+                            continue;
+                        }
+                        // 表的第一行为公司名
+                        if (j > 0) {
+                            for (int k = 0; k < maxCell; k++) {
+                                // 创建一个行里的一个单元格的对象
+                                Cell cell = row.getCell(k);
+                                // 在这里我们就可以做很多自己想做的操作了，比如往数据库中添加数据等
+                                if (cell != null && StringUtils.isNotBlank(cell.getStringCellValue())) {
+                                    company.get(companyNameList.get(k)).add(cell.toString());
+                                }
+                            }
+                        } else {
+                            for (int k = 0; k < maxCell; k++) {
+                                List<String> nodeNumList = new ArrayList<>();
+                                Cell cell = row.getCell(k);
+                                if (cell != null) {
+                                    company.put(cell.toString(), nodeNumList);
+                                    companyNameList.add(cell.toString());
+                                }
                             }
                         }
                     }
-                    //String[] 转 String
-                    list.add(Arrays.toString(str2).replaceAll("\\[","").replaceAll("\\]",""));
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        return list;
+        return company;
     }
 
 //    public File transferToFile(MultipartFile multipartFile) {
