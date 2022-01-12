@@ -19,7 +19,6 @@ import java.util.List;
  */
 public interface CompanyMapper extends BaseMapper<Company> {
 
-//    List<String> searchCompany(@Param("name") String company);
 
     List<String> searchCompany();
 
@@ -27,4 +26,8 @@ public interface CompanyMapper extends BaseMapper<Company> {
 
     List<NodeDTO> searchNodeByCompany(String companyName);
 
+    List<String> searchCompanyByName(String companyName);
+
+    List<String> searchCompanyUser(@Param("userName") String userName,
+                                   @Param("companyName") String companyName);
 }

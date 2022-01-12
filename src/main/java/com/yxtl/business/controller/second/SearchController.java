@@ -8,10 +8,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author px
@@ -47,6 +44,16 @@ public class SearchController {
     @GetMapping("/account")
     public R searchAccount(@RequestParam Integer account) {
         return searchService.searchAccount(account);
+    }
+
+    @GetMapping("/searchCompany")
+    public R searchCompanyByName(@RequestParam String companyName) {
+        return searchService.searchCompanyByName(companyName);
+    }
+
+    @GetMapping("/searchCompanyUser")
+    public R searchCompanyUser(@RequestParam String userName,@RequestParam String companyName) {
+        return searchService.searchCompanyUser(userName,companyName);
     }
 
 }

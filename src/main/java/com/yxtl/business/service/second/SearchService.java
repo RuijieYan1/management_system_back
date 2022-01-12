@@ -13,4 +13,7 @@ public interface SearchService {
 
     R searchAccount(Integer account);
 
+    R searchCompanyByName(String companyName);
+
+    R searchCompanyUser(String userName,String companyName);
 }

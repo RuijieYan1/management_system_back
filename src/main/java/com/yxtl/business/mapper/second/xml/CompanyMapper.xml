@@ -49,4 +49,36 @@
                  left join user u on n.user_id=u.id
         where c.name=#{companyName}
     </select>
+
+
+    <select id="searchCompanyByName" resultType="com.yxtl.business.dto.second.CompanyDTO">
+        SELECT  c.id,
+                c.name,
+                c.tel,
+                c.password,
+                count(c.id) as nodeNum,
+                count(n.user_id) as nodeNumA,
+                max(n.last_time) as lastTime,
+                a.id AS accountId,
+                a.company_id,
+                a.password AS accountPWD,
+                a.balance
+        FROM company c
+                 LEFT JOIN node n ON c.id =n.company_id
+                 LEFT JOIN product_account a ON c.id = a.company_id
+        group by c.id
+        having c.name like concat('%',#{companyName},'%')
+    </select>
+
+    <select id="searchCompanyUser" resultType="com.yxtl.business.dto.second.NodeDTO">
+        SELECT n.node_num as nodeNum,
+               u.name as userName,
+               n.last_time as lastTime,
+               n.lng,
+               n.lat
+        from node n
+                 left join company c on n.company_id=c.id
+                 left join user u on n.user_id=u.id
+        where c.name=#{companyName} and u.name like concat('%',#{userName},'%')
+    </select>
 </mapper>
