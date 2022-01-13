@@ -15,5 +15,7 @@ public interface SearchService {
 
     R searchCompanyByName(String companyName);
 
+
+    //根据公司中用户姓名查询用户帽子信息
     R searchCompanyUser(String userName,String companyName);
 }

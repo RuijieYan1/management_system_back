@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e5f9c5d2-f3cd-4753-af5b-149979733470" name="Changes" comment="Changes">
+    <list default="true" id="e5f9c5d2-f3cd-4753-af5b-149979733470" name="Changes" comment="2022.1.22 公司搜索功能">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yxtl/business/controller/second/SearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yxtl/business/controller/second/SearchController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yxtl/business/mapper/second/CompanyMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yxtl/business/mapper/second/CompanyMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yxtl/business/mapper/second/xml/CompanyMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yxtl/business/mapper/second/xml/CompanyMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/yxtl/business/service/second/SearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yxtl/business/service/second/SearchService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yxtl/business/service/second/impl/SearchServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yxtl/business/service/second/impl/SearchServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +60,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/yxtl/business/mapper/second/xml" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../公众号源码/refactoring-version-master" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -145,7 +141,8 @@
       <workItem from="1641872082490" duration="6085000" />
       <workItem from="1641884145032" duration="10334000" />
       <workItem from="1641947116634" duration="16398000" />
-      <workItem from="1641976599084" duration="5993000" />
+      <workItem from="1641976599084" duration="6033000" />
+      <workItem from="1642034358177" duration="14950000" />
     </task>
     <task id="LOCAL-00001" summary="Changes">
       <created>1641894266740</created>
@@ -154,7 +151,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641894266740</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="2022.1.22 公司搜索功能">
+      <created>1641982668221</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1641982668221</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -175,6 +179,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes" />
+    <MESSAGE value="2022.1.22 公司搜索功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="2022.1.22 公司搜索功能" />
   </component>
 </project>
