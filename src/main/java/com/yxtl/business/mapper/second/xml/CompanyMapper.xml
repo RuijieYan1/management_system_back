@@ -81,4 +81,10 @@
                  left join user u on n.user_id=u.id
         where c.name=#{companyName} and u.name like concat('%',#{userName},'%')
     </select>
+
+    <select id="searchCompanyIdByName" resultType="Integer">
+        SELECT c.id
+        from company c
+        where c.name=#{companyName}
+    </select>
 </mapper>

@@ -1,10 +1,12 @@
 package com.yxtl.business.mapper.second;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.api.R;
 import com.yxtl.business.dto.second.CompanyDTO;
 import com.yxtl.business.dto.second.NodeDTO;
 import com.yxtl.business.entity.second.Company;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import io.swagger.models.auth.In;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -19,7 +21,6 @@ import java.util.List;
  */
 public interface CompanyMapper extends BaseMapper<Company> {
 
-
     List<String> searchCompany();
 
     List<CompanyDTO> showCompanyByPage(IPage<CompanyDTO> page);
@@ -30,4 +31,7 @@ public interface CompanyMapper extends BaseMapper<Company> {
 
     List<String> searchCompanyUser(@Param("userName") String userName,
                                    @Param("companyName") String companyName);
+
+    Integer searchCompanyIdByName(String companyName);
+
 }

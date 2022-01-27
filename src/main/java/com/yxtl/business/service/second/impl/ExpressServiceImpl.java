@@ -11,18 +11,29 @@ import com.yxtl.business.constant.ResApiSuccessCode;
 import com.yxtl.business.dto.PublishDTO;
 import com.yxtl.business.dto.second.ExpressDTO;
 import com.yxtl.business.dto.PageInfoDTO;
+import com.yxtl.business.dto.second.NodeDTO;
+import com.yxtl.business.dto.second.OfflineOrderDTO;
+import com.yxtl.business.entity.second.ProductAddr;
+import com.yxtl.business.entity.second.ProductOrderDetail;
 import com.yxtl.business.entity.second.ProductTransaction;
 import com.yxtl.business.mapper.first.AdminMapper;
 import com.yxtl.business.mapper.first.UserMapper;
+import com.yxtl.business.mapper.second.CompanyMapper;
+import com.yxtl.business.mapper.second.ProductAddrMapper;
+import com.yxtl.business.mapper.second.ProductOrderDetailMapper;
 import com.yxtl.business.mapper.second.ProductTransactionMapper;
 import com.yxtl.business.service.second.ExpressService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yxtl.business.util.mqtt.Client;
 import com.yxtl.business.util.redis.RedisService;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -50,7 +61,16 @@ public class ExpressServiceImpl extends ServiceImpl<ProductTransactionMapper, Pr
     ProductTransactionMapper productTransactionMapper;
 
     @Autowired
+    CompanyMapper companyMapper;
+
+    @Autowired
     RedisService redisService;
+
+    @Autowired
+    ProductAddrMapper productAddrMapper;
+
+    @Autowired
+    ProductOrderDetailMapper productOrderDetailMapper;
 
     @Override
     @DS("second")
@@ -142,6 +162,50 @@ public class ExpressServiceImpl extends ServiceImpl<ProductTransactionMapper, Pr
         } else {
             return R.restResult(null, ResApiFailCode.ERROR_DELIVER);
         }
+    }
+
+    @Override
+    public R getAllCompany() {
+        List<String> list = companyMapper.searchCompany();
+        return R.restResult(list, ResApiSuccessCode.SUCCESS);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public R addOfflineOrder(OfflineOrderDTO offlineOrderDTO) {
+        //三个关联表添加数据，添加事务，发生异常时回滚
+        String orderSn=offlineOrderDTO.getOrderSn();
+        Integer companyId=companyMapper.searchCompanyIdByName(offlineOrderDTO.getCompanyName());
+        ProductAddr productAddr=new ProductAddr();
+        productAddr.setCompanyId(companyId);
+        productAddr.setName(offlineOrderDTO.getName());
+        productAddr.setTel(offlineOrderDTO.getTel());
+        productAddr.setProvince(offlineOrderDTO.getProvince());
+        productAddr.setCity(offlineOrderDTO.getCity());
+        productAddr.setCounty(offlineOrderDTO.getCounty());
+        productAddr.setAddressDetail(offlineOrderDTO.getAddressDetail());
+        productAddrMapper.insert(productAddr);
+
+        ProductTransaction productTransaction=new ProductTransaction();
+        productTransaction.setAddrId(productAddr.getId());
+        productTransaction.setOrderSn(orderSn);
+        //线下用户订单 userId为-1
+        productTransaction.setUserId(-1);
+        productTransaction.setCompanyId(companyId);
+        productTransaction.setOrderStatus(1);
+        productTransactionMapper.insert(productTransaction);
+
+        List<Map<String,String>> list=offlineOrderDTO.getProductList();
+        ProductOrderDetail productOrderDetail=new ProductOrderDetail();
+        for(Map<String,String> map:list){
+            Integer productId=Integer.parseInt(map.get("type"));
+            Integer number=Integer.parseInt(map.get("number"));
+            productOrderDetail.setProductId(productId);
+            productOrderDetail.setProductCount(number);
+            productOrderDetail.setOrderSn(orderSn);
+            productOrderDetailMapper.insert(productOrderDetail);
+        }
+        return R.restResult(null, ResApiSuccessCode.SUCCESS);
     }
 
 }

@@ -47,6 +47,11 @@ public class CompanyController {
         return companyService.addCompany(companyDTO);
     }
 
+    @ApiOperation(value = "公司的帽子信息", notes = "公司的帽子信息")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "执行成功"),
+            @ApiResponse(code = -1, message = "出错了")
+    })
     @GetMapping("/showNodeByCompany")
     public R showNodeByCompany(@RequestParam String companyName) {
         return companyService.showNodeByCompany(companyName);

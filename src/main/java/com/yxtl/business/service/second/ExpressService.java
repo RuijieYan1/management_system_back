@@ -2,6 +2,7 @@ package com.yxtl.business.service.second;
 
 import com.baomidou.mybatisplus.extension.api.R;
 import com.yxtl.business.dto.second.ExpressDTO;
+import com.yxtl.business.dto.second.OfflineOrderDTO;
 import com.yxtl.business.entity.second.ProductTransaction;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -19,4 +20,8 @@ public interface ExpressService extends IService<ProductTransaction> {
 
     R deliverGoods(ExpressDTO expressDTO);
 
+    R getAllCompany();
+
+    //新增线下订单
+    R addOfflineOrder(OfflineOrderDTO offlineOrderDTO);
 }

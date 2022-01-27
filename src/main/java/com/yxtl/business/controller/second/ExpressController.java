@@ -2,7 +2,9 @@ package com.yxtl.business.controller.second;
 
 
 import com.baomidou.mybatisplus.extension.api.R;
+import com.yxtl.business.dto.second.CompanyDTO;
 import com.yxtl.business.dto.second.ExpressDTO;
+import com.yxtl.business.dto.second.OfflineOrderDTO;
 import com.yxtl.business.service.second.ExpressService;
 import com.yxtl.business.util.identity.IdentityUtil;
 import io.swagger.annotations.Api;
@@ -12,6 +14,8 @@ import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * <p>
@@ -53,6 +57,27 @@ public class ExpressController {
         String name = identityUtil.getOperator(expressDTO.getUserName(), expressDTO.getIdentity());
         expressDTO.setOperator(name);
         return expressService.deliverGoods(expressDTO);
+    }
+
+    @ApiOperation(value = "获取所有公司名字", notes = "获取所有公司名字")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "执行成功"),
+            @ApiResponse(code = -1, message = "出错了")
+    })
+    @PostMapping("/getAllCompany")
+    public R getAllCompany(){
+        return expressService.getAllCompany();
+    }
+
+
+    @ApiOperation(value = "添加线下订单", notes = "添加线下订单")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "执行成功"),
+            @ApiResponse(code = -1, message = "出错了")
+    })
+    @PostMapping("/addOfflineOrder")
+    public R addOfflineOrder(@RequestBody OfflineOrderDTO offlineOrderDTO) {
+        return expressService.addOfflineOrder(offlineOrderDTO);
     }
 
 }
