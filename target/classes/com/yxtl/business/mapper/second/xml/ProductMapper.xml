@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yxtl.business.mapper.second.ProductMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yxtl.business.entity.second.Product">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="sketch" property="sketch" />
+        <result column="intro" property="intro" />
+        <result column="kind_id" property="kindId" />
+        <result column="spu_id" property="spuId" />
+        <result column="series" property="series" />
+        <result column="img" property="img" />
+        <result column="price" property="price" />
+        <result column="stock" property="stock" />
+        <result column="sales" property="sales" />
+        <result column="deleted_at" property="deletedAt" />
+        <result column="created_at" property="createdAt" />
+        <result column="updated_at" property="updatedAt" />
+        <result column="is_sale" property="isSale" />
+        <result column="is_set" property="isSet" />
+    </resultMap>
+
+    <select id="showGood" resultType="com.yxtl.business.dto.second.ProductDTO">
+        SELECT p.id,
+        p.name,
+        p.sketch,
+        p.intro,
+        p.kind_id,
+        p.spu_id,
+        p.series,
+        p.img,
+        p.price,
+        p.stock,
+        p.sales,
+        p.deleted_at,
+        p.created_at,
+        p.updated_at,
+        p.is_sale,
+        p.is_set,
+        s.id AS spuProductId,
+        s.name AS spuName,
+        k.id AS kindProductId,
+        k.name AS kindName
+        FROM product p
+        LEFT JOIN product_spu s ON s.id = p.spu_id
+        LEFT JOIN product_kind k ON k.id = p.kind_id
+        ORDER BY p.id DESC
+    </select>
+
+    <select id="showSuit" resultType="com.yxtl.business.entity.second.Product">
+        SELECT id,
+               name,
+               price,
+               sales,
+               is_sale
+        FROM product WHERE is_set = 0
+    </select>
+
+</mapper>

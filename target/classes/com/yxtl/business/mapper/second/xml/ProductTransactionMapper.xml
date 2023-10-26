@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yxtl.business.mapper.second.ProductTransactionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yxtl.business.entity.second.ProductTransaction">
+        <id column="id" property="id" />
+        <result column="order_sn" property="orderSn" />
+        <result column="create_time" property="createTime" />
+        <result column="user_id" property="userId" />
+        <result column="company_id" property="companyId" />
+        <result column="addr_id" property="addrId" />
+        <result column="amount" property="amount" />
+        <result column="discount" property="discount" />
+        <result column="need_invoice" property="needInvoice" />
+        <result column="comment" property="comment" />
+        <result column="payment_status" property="paymentStatus" />
+        <result column="completion_time" property="completionTime" />
+        <result column="order_status" property="orderStatus" />
+        <result column="payment_type" property="paymentType" />
+        <result column="pay_user_id" property="payUserId" />
+        <result column="logistics" property="logistics" />
+        <result column="exp_name" property="expName" />
+        <result column="deliver_operator" property="deliverOperator" />
+        <result column="deliver_time" property="deliverTime" />
+        <result column="sign_status" property="signStatus" />
+        <result column="sign_time" property="signTime" />
+    </resultMap>
+
+    <select id="showOrderByPage" resultType="com.yxtl.business.dto.second.ExpressDTO">
+        SELECT t.id,
+        t.order_sn,
+        t.exp_name,
+        t.logistics,
+        t.order_status,
+        t.deliver_operator,
+        t.deliver_time,
+        t.sign_status,
+        a.name,
+        a.province,
+        a.city,
+        a.county,
+        a.address_detail,
+        a.tel FROM product_transaction t
+        LEFT JOIN product_addr a ON a.id = t.addr_id
+        WHERE addr_id IS NOT NULL
+        AND order_status != 3
+        AND order_status != 0
+        ORDER BY id DESC
+    </select>
+
+</mapper>

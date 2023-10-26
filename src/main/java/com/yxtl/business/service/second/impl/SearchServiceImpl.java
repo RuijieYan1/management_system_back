@@ -44,12 +44,14 @@ public class SearchServiceImpl implements SearchService {
     }
 
     @Override
+    @DS("second")
     public R searchCompanyByName(String companyName) {
         List<String> list = companyMapper.searchCompanyByName(companyName);
         return R.restResult(list, ResApiSuccessCode.SUCCESS);
     }
 
     @Override
+    @DS("second")
     public R searchCompanyUser(String userName,String companyName) {
         List<String> list = companyMapper.searchCompanyUser(userName,companyName);
         return R.restResult(list, ResApiSuccessCode.SUCCESS);

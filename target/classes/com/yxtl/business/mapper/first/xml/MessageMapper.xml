@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yxtl.business.mapper.first.MessageMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yxtl.business.entity.first.Message">
+        <id column="id" property="id" />
+        <result column="order_sn" property="orderSn" />
+        <result column="start_time" property="startTime" />
+        <result column="type" property="type" />
+        <result column="status" property="status" />
+        <result column="complete_time" property="completeTime" />
+    </resultMap>
+
+    <select id="showUnReadMsg" resultType="com.yxtl.business.entity.first.Message">
+        SELECT * FROM message WHERE status = 0 ORDER BY id DESC
+    </select>
+
+    <select id="showReadMsg" resultType="com.yxtl.business.entity.first.Message">
+        SELECT * FROM message WHERE status = 1
+    </select>
+
+    <select id="showRecycleMsg" resultType="com.yxtl.business.entity.first.Message">
+        SELECT * FROM message WHERE status = 2
+    </select>
+
+</mapper>

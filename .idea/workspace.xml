@@ -4,18 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e5f9c5d2-f3cd-4753-af5b-149979733470" name="Changes" comment="2022.1.23">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yxtl/business/dto/second/OfflineOrderDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yxtl/business/entity/second/ProductOrderDetail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yxtl/business/mapper/second/ProductOrderDetailMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yxtl/business/mapper/second/xml/ProductOrderDetailMapper.xml" afterDir="false" />
+    <list default="true" id="e5f9c5d2-f3cd-4753-af5b-149979733470" name="Changes" comment="2022.1.27  新增线下订单">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/yxtl/business/controller/second/CompanyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yxtl/business/controller/second/CompanyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yxtl/business/controller/second/ExpressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yxtl/business/controller/second/ExpressController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yxtl/business/mapper/second/CompanyMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yxtl/business/mapper/second/CompanyMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yxtl/business/mapper/second/xml/CompanyMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yxtl/business/mapper/second/xml/CompanyMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yxtl/business/service/second/ExpressService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yxtl/business/service/second/ExpressService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yxtl/business/service/second/impl/ExpressServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yxtl/business/service/second/impl/ExpressServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yxtl/business/service/second/impl/SearchServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yxtl/business/service/second/impl/SearchServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +32,17 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/yxtl/business/util/mqtt/MqttTaskServiceImpl.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/yxtl/business/util/mqtt/MqttTaskService.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/yxtl/business/util/mqtt/MqttClientImpl.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/yxtl/business/util/mqtt/Client.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/yxtl/business/util/identity/IdentityUtil.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/yxtl/business/Application.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/yxtl/business/util/mqtt/SubCallback.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/yxtl/business/util/redis/RedisService.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/yxtl/business/util/spring/SpringUtils.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -70,7 +73,7 @@
     <property name="ToolWindowRun.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../公众号源码/refactoring-version-master" />
+    <property name="last_opened_file_path" value="D:/workspace_idea/Project01/SOFA-RPC-demo" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -120,7 +123,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true">
       <module name="admin-version" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.yxtl.business.Application" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -136,6 +139,7 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.Application" />
         <item itemvalue="Application.OrderSnUtil" />
         <item itemvalue="Application.CodeGeneration" />
       </list>
@@ -185,7 +189,89 @@
       <workItem from="1643104906724" duration="3000" />
       <workItem from="1643181254548" duration="2458000" />
       <workItem from="1643198368589" duration="1594000" />
-      <workItem from="1643244293381" duration="14826000" />
+      <workItem from="1643244293381" duration="17176000" />
+      <workItem from="1643366976839" duration="244000" />
+      <workItem from="1643456473522" duration="70000" />
+      <workItem from="1643597122984" duration="911000" />
+      <workItem from="1643856773295" duration="4555000" />
+      <workItem from="1643956150801" duration="53000" />
+      <workItem from="1644016437825" duration="1229000" />
+      <workItem from="1644278494777" duration="2501000" />
+      <workItem from="1645590407084" duration="176000" />
+      <workItem from="1645620400958" duration="224000" />
+      <workItem from="1650611189028" duration="4322000" />
+      <workItem from="1650618854849" duration="169000" />
+      <workItem from="1650627995518" duration="354000" />
+      <workItem from="1652064286738" duration="1345000" />
+      <workItem from="1652146457391" duration="1493000" />
+      <workItem from="1652250881254" duration="10000" />
+      <workItem from="1652752602684" duration="464000" />
+      <workItem from="1652834398360" duration="3545000" />
+      <workItem from="1652925661716" duration="19000" />
+      <workItem from="1655362006711" duration="761000" />
+      <workItem from="1655712077942" duration="19000" />
+      <workItem from="1655797249303" duration="1542000" />
+      <workItem from="1655862827758" duration="2952000" />
+      <workItem from="1655873408532" duration="26000" />
+      <workItem from="1655900539365" duration="676000" />
+      <workItem from="1655966179764" duration="46000" />
+      <workItem from="1655975216087" duration="732000" />
+      <workItem from="1655983554744" duration="88000" />
+      <workItem from="1658128456308" duration="2159000" />
+      <workItem from="1658191846594" duration="28000" />
+      <workItem from="1659012698235" duration="28000" />
+      <workItem from="1659063345375" duration="18000" />
+      <workItem from="1660117067563" duration="30000" />
+      <workItem from="1660117585166" duration="16000" />
+      <workItem from="1660121658487" duration="302000" />
+      <workItem from="1660135967315" duration="11000" />
+      <workItem from="1660568517280" duration="1084000" />
+      <workItem from="1660614104481" duration="14000" />
+      <workItem from="1660631264407" duration="192000" />
+      <workItem from="1660721363132" duration="2544000" />
+      <workItem from="1660803002655" duration="116000" />
+      <workItem from="1660975758158" duration="432000" />
+      <workItem from="1667806735770" duration="70000" />
+      <workItem from="1669462621865" duration="111000" />
+      <workItem from="1684116531469" duration="2841000" />
+      <workItem from="1684221469771" duration="14000" />
+      <workItem from="1684373898612" duration="297000" />
+      <workItem from="1684374578732" duration="21000" />
+      <workItem from="1684375942274" duration="315000" />
+      <workItem from="1684376940951" duration="17000" />
+      <workItem from="1684379427867" duration="422000" />
+      <workItem from="1684391218424" duration="898000" />
+      <workItem from="1684393007512" duration="29000" />
+      <workItem from="1684462177875" duration="6000" />
+      <workItem from="1684476613824" duration="200000" />
+      <workItem from="1684478232876" duration="875000" />
+      <workItem from="1684480021196" duration="102000" />
+      <workItem from="1684482384375" duration="111000" />
+      <workItem from="1684907730490" duration="608000" />
+      <workItem from="1685070820537" duration="551000" />
+      <workItem from="1685415981409" duration="1851000" />
+      <workItem from="1685426129283" duration="1309000" />
+      <workItem from="1685427467814" duration="1136000" />
+      <workItem from="1685428635178" duration="44000" />
+      <workItem from="1685430067902" duration="211000" />
+      <workItem from="1685430294905" duration="375000" />
+      <workItem from="1685430689528" duration="5000" />
+      <workItem from="1685689180069" duration="1333000" />
+      <workItem from="1685690624764" duration="2087000" />
+      <workItem from="1685692747616" duration="95000" />
+      <workItem from="1686732556795" duration="1066000" />
+      <workItem from="1686790669937" duration="1091000" />
+      <workItem from="1686794575537" duration="554000" />
+      <workItem from="1686811335523" duration="3558000" />
+      <workItem from="1687260252864" duration="16000" />
+      <workItem from="1693295914836" duration="1938000" />
+      <workItem from="1693299750135" duration="305000" />
+      <workItem from="1693300108717" duration="31000" />
+      <workItem from="1697439393018" duration="2228000" />
+      <workItem from="1697612210181" duration="23000" />
+      <workItem from="1697612528478" duration="77000" />
+      <workItem from="1697790325466" duration="1407000" />
+      <workItem from="1697962406044" duration="251000" />
     </task>
     <task id="LOCAL-00001" summary="Changes">
       <created>1641894266740</created>
@@ -208,7 +294,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642067072500</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="2022.1.27  新增线下订单">
+      <created>1643270385644</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1643270385644</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,7 +324,8 @@
     <MESSAGE value="Changes" />
     <MESSAGE value="2022.1.22 公司搜索功能" />
     <MESSAGE value="2022.1.23" />
-    <option name="LAST_COMMIT_MESSAGE" value="2022.1.23" />
+    <MESSAGE value="2022.1.27  新增线下订单" />
+    <option name="LAST_COMMIT_MESSAGE" value="2022.1.27  新增线下订单" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
